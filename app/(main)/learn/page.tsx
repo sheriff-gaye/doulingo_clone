@@ -1,4 +1,6 @@
+import FeedWrapper from "@/components/feed-wrapper"
 import StickyWrapper from "@/components/stickey-wrapper"
+import Header from "./header"
 
 
 const LearnPage=()=>{
@@ -8,8 +10,11 @@ const LearnPage=()=>{
         <div className="flex flex-row-reverse gap-[48px] px-6 ">
 
             <StickyWrapper>
-                My sticky wrapper
+                <UserProgress  activeCourses={{}}  hearts={5} points={100}  hasActiveSubscription={false}/>
             </StickyWrapper>
+            <FeedWrapper>
+               <Header title="French"/>
+            </FeedWrapper>
         </div>
         
     )
