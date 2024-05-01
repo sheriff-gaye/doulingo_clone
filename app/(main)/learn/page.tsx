@@ -16,8 +16,6 @@ const LearnPage=()=>{
             <FeedWrapper>
                <Header title="French"/>
                <div className="space-y-4 ">
-                <div  className="h-[700px]  bg-blue-500  w-full "/>
-
                </div>
             </FeedWrapper>
         </div>

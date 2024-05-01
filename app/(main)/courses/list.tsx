@@ -19,7 +19,7 @@ const List = ({ courses, activeCourseId }: Props) => {
           imageSrc={course.imageSrc}
           onClick={() => {}}
           disabled={false}
-          active={course.id == activeCourseId}
+          active={course.id === activeCourseId}
         />
       ))}
     </div>
