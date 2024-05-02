@@ -1,14 +1,17 @@
 "use client";
 
-import { courses } from "@/db/schema";
+import { courses, userProgress } from "@/db/schema";
 import Card from "./card";
+import { useTransition } from "react";
 
 type Props = {
   courses: typeof courses.$inferSelect[];
-  activeCourseId: number;
+  activeCourseId?: typeof userProgress.$inferSelect.activeCourseId;
 };
 
 const List = ({ courses, activeCourseId }: Props) => {
+
+  const [pending , startTranition]=useTransition();
   return (
     <div className="pt-6  grid grid-cols-2  lg:grid-cols-[repeat(auto-fill,minmax(210px,1fr))] gap-4 ">
       {courses.map((course) => (
