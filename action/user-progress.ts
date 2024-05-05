@@ -1,7 +1,11 @@
 "use server"
 
+import db from "@/db/drizzle";
 import { getCourseById, getUserProgress } from "@/db/queries";
+import { userProgress } from "@/db/schema";
 import { auth, currentUser } from "@clerk/nextjs";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export const upsertUserProgress = async (courseId: number) => {
 
@@ -26,6 +30,32 @@ export const upsertUserProgress = async (courseId: number) => {
 
 
     const existingUserProgress=await getUserProgress()
+
+    if(existingUserProgress){
+        await db.update(userProgress).set({
+        activeCourseId:courseId,
+        userName:user.firstName || "User",
+        userImageSrc:user.imageUrl || "/mascot"
+
+        });
+
+        revalidatePath('/learn');
+        revalidatePath('/courses');
+        redirect('/learn')
+
+    }
+
+
+    await db.insert(userProgress).values({
+        userId,
+        activeCourseId:courseId,
+        userName:user.firstName || "User",
+        userImageSrc:user.imageUrl || "/mascot"
+    })
+
+    revalidatePath('/learn');
+    revalidatePath('/courses');
+    redirect('/learn')
 
 
 
