@@ -2,7 +2,6 @@ import FeedWrapper from "@/components/feed-wrapper"
 import StickyWrapper from "@/components/stickey-wrapper"
 import Header from "./header"
 import UserProgress from "@/components/user-progress"
-import { title } from "process"
 import { getUserProgress } from "@/db/queries"
 import { redirect } from "next/navigation"
 
@@ -21,10 +20,10 @@ const LearnPage=async()=>{
 
         <div className="flex flex-row-reverse gap-[48px] px-6 ">
             <StickyWrapper>
-                <UserProgress  activeCourses={{title:"Spanish" , imageSrc:"/es.svg"}}  hearts={5} points={100}  hasActiveSubscription={false}/>
+                <UserProgress  activeCourses={userProgress.activeCourse}  hearts={userProgress.hearts} points={userProgress.points}  hasActiveSubscription={false}/>
             </StickyWrapper>
             <FeedWrapper>
-               <Header title="French"/>
+               <Header title={userProgress.activeCourse.title}/>
                <div className="space-y-4 ">
                </div>
             </FeedWrapper>
