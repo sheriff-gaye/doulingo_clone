@@ -54,7 +54,7 @@ const main = async () => {
                 title:"Unit 1",
                 description:"learn the basics of Spanish",
                 order:1
-            },
+            }
 
 
         ]);
